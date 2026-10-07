@@ -1,0 +1,5 @@
+"arm","n","detail"
+"control",5,"WT_Ctl-No-IR, no surgery"
+"ischemia_only",5,"clamp 20 min, harvested with the clamp still closed"
+"reperfusion",31,"clamp released, 6 timepoints: 4h 16h 24h 36h 48h 72h"
+"excluded_Azin1",16,"Azin1-locked and Azin1-uneditable: a genotype contrast is not what is tested"

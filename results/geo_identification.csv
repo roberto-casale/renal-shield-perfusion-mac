@@ -1,0 +1,2 @@
+"query","n_identified","searched_on"
+"(kidney[Title] OR renal[Title]) AND (ischemi*[Title] OR reperfusion[Title]) AND (""expression profiling by array""[Filter] OR ""expression profiling by high throughput sequencing""[Filter]) AND gse[Filter]",122,"2026-09-11"

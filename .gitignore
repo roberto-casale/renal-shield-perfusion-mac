@@ -1,0 +1,32 @@
+# Machine-specific environment (R library, Python, Jupyter): rebuilt by the setup step.
+env/
+
+# Downloaded data and caches: recreated on a run. Tracked exceptions, added with
+# `git add -f`: the cached GEO identification answers (Figure 1) and the cached
+# WebGestalt answers of the enrichment (data/cache/*.rds).
+data/
+
+# Run logs.
+logs/
+
+# Manuscript drafts and reference articles: kept on this computer only.
+first_draft/
+articles/
+*.pdf
+
+# Folders created if a notebook cell runs before moving to the project root.
+notebook/logs/
+notebook/data/
+notebook/figures/
+notebook/results/
+
+# R, Python, Jupyter, Office and operating-system files.
+.Rhistory
+.RData
+.Rproj.user/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+~$*

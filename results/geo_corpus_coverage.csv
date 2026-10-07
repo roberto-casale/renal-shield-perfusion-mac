@@ -1,0 +1,11 @@
+"accession","role","returned_by_query"
+"GSE30718","corpus",FALSE
+"GSE43974","corpus",FALSE
+"GSE126805","corpus",FALSE
+"GSE39548","corpus",TRUE
+"GSE98622","corpus",TRUE
+"GSE34351","corpus",TRUE
+"GSE27274","corpus",TRUE
+"GSE58438","corpus",TRUE
+"GSE148420","corpus",TRUE
+"GSE267650","held-out",TRUE

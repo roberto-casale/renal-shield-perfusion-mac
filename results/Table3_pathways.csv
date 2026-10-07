@@ -1,0 +1,14 @@
+"database","geneSet","description","size","overlap","enrichmentRatio","FDR"
+"pathway_KEGG","hsa04668","TNF signaling pathway",108,23,9.0901559454191,7.19424519957101e-14
+"pathway_KEGG","hsa04657","IL-17 signaling pathway",87,16,7.84996975196612,1.71455230013606e-08
+"pathway_Reactome","R-HSA-1280215","Cytokine Signaling in Immune system",623,39,3.25382557517389,4.90439990841196e-08
+"pathway_Reactome","R-HSA-6785807","Interleukin-4 and Interleukin-13 signaling",105,16,7.92042328042328,7.70538181408635e-08
+"pathway_Reactome","R-HSA-449147","Signaling by Interleukins",430,31,3.74723514211886,7.70538181408635e-08
+"pathway_Reactome","R-HSA-6783783","Interleukin-10 signaling",43,10,12.0878552971576,2.56286841260334e-06
+"pathway_KEGG","hsa04010","MAPK signaling pathway",290,24,3.53248638838476,5.26721189864077e-06
+"pathway_Reactome","R-HSA-168256","Immune System",1797,65,1.88010882334755,2.06217501357742e-05
+"pathway_KEGG","hsa04210","Apoptosis",129,15,4.96328029375765,2.14173077792701e-05
+"pathway_KEGG","hsa04064","NF-kappa B signaling pathway",88,12,5.82057416267943,4.23644788289934e-05
+"pathway_KEGG","hsa04380","Osteoclast differentiation",121,14,4.93866898651588,4.23644788289934e-05
+"pathway_Reactome","R-HSA-3371497","HSP90 chaperone cycle for steroid hormone receptors (SHR)",50,9,9.356,9.53996091860785e-05
+"pathway_Reactome","R-HSA-8953897","Cellular responses to external stimuli",418,25,3.1087187666135,9.53996091860785e-05
