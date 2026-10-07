@@ -22,16 +22,14 @@ fig_dataset_prisma <- function(n_identified, n_included, file, organisms = NULL,
   by_hand  <- corpus$accession[!corpus$returned_by_query]
   held_out <- coverage$accession[coverage$role == "held-out"]
   stopifnot(length(in_query) + length(by_hand) == n_included, all(corpus$accession %in% names(organisms)))
-  species <- function(acc) {
-    sp <- unname(common[organisms[acc]])
-    sp <- factor(sp, levels = intersect(c("mouse", "rat", "human"), sp))
-    paste(sprintf("%d %s", as.integer(table(sp)), levels(sp)), collapse = "  |  ")
-  }
+  DOT <- "  \u00b7  "
+  species_of <- function(acc) unname(common[organisms[acc]])
+  gse_order  <- function(acc) acc[order(as.numeric(sub("^GSE", "", acc)))]
 
   INK <- "#22303F"; MUTE <- "#5A6B7B"; RULE <- "#C2CEDA"
   FILL <- "#F5F8FB"; FILL_IN <- "#E9F3EC"; EDGE_IN <- "#4E8C63"
   FILL_SIDE <- "#FCF8F0"; EDGE_SIDE <- "#AD8A52"
-  HEAD <- 5.4; LEAD <- 7.0; SUB <- 5.8; BODY <- 5.6      # text sizes (mm)
+  HEAD <- 5.4; LEAD <- 7.0; BODY <- 5.6      # text sizes (mm)
 
   # One text line: words, size, weight, colour.
   ln <- function(text, size = BODY, face = "plain", col = MUTE) list(text = text, size = size, face = face, col = col)
@@ -43,25 +41,29 @@ fig_dataset_prisma <- function(n_identified, n_included, file, organisms = NULL,
   boxes <- list(
     ident = list(head = "IDENTIFICATION", col = MUTE, fill = FILL, edge = RULE, lines = c(
       list(ln(sprintf("%s series", format(n_identified, big.mark = ",")), LEAD, "bold", INK),
-           ln("returned by the declared Entrez query over GEO", SUB, "plain", INK)),
+           ln("returned by the declared Entrez query over GEO")),
       lapply(query_lines, ln),
       if (!is.null(searched_on)) list(ln(sprintf("queried %s", searched_on))) else list())),
     criteria = list(head = "INCLUSION CRITERIA", col = MUTE, fill = FILL, edge = RULE, lines = list(
       ln("renal ischemia-reperfusion injury"),
-      ln("and reference groups, verified sample"),
-      ln("by sample in the GEO metadata"),
-      ln("kidney tissue   |   whole-transcriptome platform"))),
-    included = list(head = "INCLUDED", col = EDGE_IN, fill = FILL_IN, edge = EDGE_IN, lines = list(
-      ln(sprintf("%d from the query:  %s", length(in_query), species(in_query)), LEAD, "bold", INK),
-      ln(sprintf("+ %d identified separately:  %s", length(by_hand), species(by_hand)), LEAD, "bold", INK))),
+      ln("and reference groups,"),
+      ln("verified sample by sample in the GEO metadata"),
+      ln(paste("kidney tissue", "whole-transcriptome platform", sep = DOT)))),
+    included = list(head = "INCLUDED", col = EDGE_IN, fill = FILL_IN, edge = EDGE_IN, lines = c(
+      list(ln(sprintf("%d series", n_included), LEAD, "bold", INK),
+           ln(sprintf("%d from the query", length(in_query)))),
+      lapply(intersect(c("mouse", "rat", "human"), species_of(in_query)), function(sp)
+        ln(sprintf("%s: %s", sp, paste(gse_order(in_query[species_of(in_query) == sp]), collapse = DOT)))),
+      list(ln(sprintf("+ %d %s series identified separately", length(by_hand),
+                      paste(unique(species_of(by_hand)), collapse = " and ")))))),
     held = list(head = "HELD OUT", col = MUTE, fill = FILL, edge = RULE, lines = list(
-      ln(paste(held_out, collapse = "  |  "), LEAD, "bold", INK),
+      ln(paste(held_out, collapse = DOT), LEAD, "bold", INK),
       ln("returned by the declared query,"),
       ln("reserved for external evaluation"))),
     separate = list(head = "IDENTIFIED SEPARATELY", col = EDGE_SIDE, fill = FILL_SIDE, edge = EDGE_SIDE, lines = list(
       ln(sprintf("%d human transplant series", length(by_hand)), LEAD, "bold", INK),
       ln("not returned by the declared query"),
-      ln(paste(by_hand, collapse = "  |  ")),
+      ln(paste(gse_order(by_hand), collapse = DOT)),
       ln("their titles carry neither"),
       ln("\"ischemia\" nor \"reperfusion\""))))
 
