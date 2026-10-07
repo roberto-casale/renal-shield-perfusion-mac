@@ -1,6 +1,8 @@
 # figures.R -- the three figures of the article (notebook 2).
 #
-#   fig_dataset_prisma()  Figure 1: identification and inclusion of the nine series.
+#   fig_dataset_prisma()  Figure 1: the 122 series of the GEO query, the inclusion criteria,
+#                         the nine series analysed (six from the query, three human series
+#                         identified separately) and the series held out for validation.
 #   fig_workflow()        Figure 3: the analysis workflow.
 #   fig_interventions()   Figure 2: three injury pathways, the signature genes on them and
 #                         candidate interventions from the literature (sources in the caption).
@@ -12,150 +14,125 @@ suppressWarnings(suppressMessages({ library(ggplot2) }))
 
 fig_dataset_prisma <- function(n_identified, n_included, file, organisms = NULL,
                                searched_on = NULL, coverage = NULL, query = NULL) {
-  common <- c("Homo sapiens" = "human", "Mus musculus" = "mouse",
-              "Rattus norvegicus" = "rat")
-  composition <- if (is.null(organisms)) "" else {
-    tb <- table(ifelse(organisms %in% names(common), common[organisms], organisms))
-    paste(sprintf("%d %s", as.integer(tb), names(tb)), collapse = "   |   ")
-  }
-  n_from_query <- NA_integer_; n_by_hand <- NA_integer_
-  hand_acc <- character(0); ho_acc <- character(0)
-  if (!is.null(coverage) && nrow(coverage)) {
-    cor <- coverage[coverage$role == "corpus", ]
-    n_from_query <- sum(cor$returned_by_query)
-    hand_acc <- cor$accession[!cor$returned_by_query]
-    n_by_hand <- length(hand_acc)
-    ho_acc <- coverage$accession[coverage$role == "held-out"]
+  stopifnot("the coverage table (results/geo_corpus_coverage.csv) is required" = !is.null(coverage),
+            "organisms must be named by accession" = !is.null(names(organisms)))
+  common <- c("Homo sapiens" = "human", "Mus musculus" = "mouse", "Rattus norvegicus" = "rat")
+  corpus   <- coverage[coverage$role == "corpus", ]
+  in_query <- corpus$accession[corpus$returned_by_query]
+  by_hand  <- corpus$accession[!corpus$returned_by_query]
+  held_out <- coverage$accession[coverage$role == "held-out"]
+  stopifnot(length(in_query) + length(by_hand) == n_included, all(corpus$accession %in% names(organisms)))
+  species <- function(acc) {
+    sp <- unname(common[organisms[acc]])
+    sp <- factor(sp, levels = intersect(c("mouse", "rat", "human"), sp))
+    paste(sprintf("%d %s", as.integer(table(sp)), levels(sp)), collapse = "  |  ")
   }
 
   INK <- "#22303F"; MUTE <- "#5A6B7B"; RULE <- "#C2CEDA"
   FILL <- "#F5F8FB"; FILL_IN <- "#E9F3EC"; EDGE_IN <- "#4E8C63"
   FILL_SIDE <- "#FCF8F0"; EDGE_SIDE <- "#AD8A52"
+  HEAD <- 5.4; LEAD <- 7.0; SUB <- 5.8; BODY <- 5.6      # text sizes (mm)
 
-  qlines <- c("(kidney OR renal)[Title]   AND   (ischemi* OR reperfusion)[Title]",
-              "AND   expression profiling by array / by high-throughput sequencing",
-              "AND   gse[Filter]")
-  if (!is.null(searched_on)) qlines <- c(qlines, "", sprintf("queried %s", searched_on))
-
+  # One text line: words, size, weight, colour.
+  ln <- function(text, size = BODY, face = "plain", col = MUTE) list(text = text, size = size, face = face, col = col)
+  query_lines <- c("(kidney OR renal)[Title]",
+                   "AND   (ischemi* OR reperfusion)[Title]",
+                   "AND   expression profiling by array /",
+                   "by high-throughput sequencing",
+                   "AND   gse[Filter]")
   boxes <- list(
-    list(side = FALSE, head = "IDENTIFICATION", head_col = MUTE,
-         lead = sprintf("%s series returned by the declared Entrez query over GEO",
-                        format(n_identified, big.mark = ",")),
-         lead_size = 5.4, body = qlines, body_size = 4.4,
-         fill = FILL, edge = RULE),
-    list(side = FALSE, head = "INCLUSION CRITERIA", head_col = MUTE,
-         lead = NULL,
+    ident = list(head = "IDENTIFICATION", col = MUTE, fill = FILL, edge = RULE, lines = c(
+      list(ln(sprintf("%s series", format(n_identified, big.mark = ",")), LEAD, "bold", INK),
+           ln("returned by the declared Entrez query over GEO", SUB, "plain", INK)),
+      lapply(query_lines, ln),
+      if (!is.null(searched_on)) list(ln(sprintf("queried %s", searched_on))) else list())),
+    criteria = list(head = "INCLUSION CRITERIA", col = MUTE, fill = FILL, edge = RULE, lines = list(
+      ln("renal ischemia-reperfusion injury"),
+      ln("and reference groups, verified sample"),
+      ln("by sample in the GEO metadata"),
+      ln("kidney tissue   |   whole-transcriptome platform"))),
+    included = list(head = "INCLUDED", col = EDGE_IN, fill = FILL_IN, edge = EDGE_IN, lines = list(
+      ln(sprintf("%d from the query:  %s", length(in_query), species(in_query)), LEAD, "bold", INK),
+      ln(sprintf("+ %d identified separately:  %s", length(by_hand), species(by_hand)), LEAD, "bold", INK))),
+    held = list(head = "HELD OUT", col = MUTE, fill = FILL, edge = RULE, lines = list(
+      ln(paste(held_out, collapse = "  |  "), LEAD, "bold", INK),
+      ln("returned by the declared query,"),
+      ln("reserved for external evaluation"))),
+    separate = list(head = "IDENTIFIED SEPARATELY", col = EDGE_SIDE, fill = FILL_SIDE, edge = EDGE_SIDE, lines = list(
+      ln(sprintf("%d human transplant series", length(by_hand)), LEAD, "bold", INK),
+      ln("not returned by the declared query"),
+      ln(paste(by_hand, collapse = "  |  ")),
+      ln("their titles carry neither"),
+      ln("\"ischemia\" nor \"reperfusion\""))))
 
-         body = c("renal ischemia-reperfusion injury",
-                  "injury and control groups verified sample by sample in the GEO metadata"),
-         body_size = 4.8, fill = FILL, edge = RULE),
-    list(side = FALSE, head = "INCLUDED", head_col = EDGE_IN,
-         lead = sprintf("%d datasets analysed", n_included), lead_size = 6.2,
-         body = composition, body_size = 4.8, fill = FILL_IN, edge = EDGE_IN))
-
-  sides <- list()
-  if (!is.na(n_by_hand) && n_by_hand > 0)
-    sides[[1]] <- list(anchor = 1L, head = "IDENTIFIED SEPARATELY", head_col = EDGE_SIDE,
-                       lead = sprintf("%d human transplant series", n_by_hand),
-                       lead_size = 4.7,
-                       body = c("not returned by the declared query",
-                                paste(hand_acc, collapse = "   |   "), "",
-                                "their titles carry neither",
-                                '"ischemia" nor "reperfusion"'),
-                       body_size = 4.3, fill = FILL_SIDE, edge = EDGE_SIDE)
-  if (length(ho_acc))
-    sides[[length(sides) + 1L]] <-
-      list(anchor = 3L, head = "HELD OUT", head_col = MUTE,
-           lead = paste(ho_acc, collapse = "   |   "), lead_size = 4.7,
-           body = c("returned by the declared query,",
-                    "reserved for external validation"),
-           body_size = 4.3, fill = FILL, edge = RULE)
-
-  HEAD_SIZE <- 4.7
-  LHF <- 1.30
-  line_in <- function(size, lh = LHF) size * .pt * lh / 72.27
-  PAD <- 0.16
-  hgt <- function(b) {
-    h <- line_in(HEAD_SIZE, 1.55) +
-         (if (is.null(b$lead)) 0 else line_in(b$lead_size, 1.70)) +
-         (if (length(b$body) && any(nzchar(b$body)))
-            length(b$body) * line_in(b$body_size) else 0)
-    max(0.50, h / 2 + PAD)
+  # Sizes in inches, measured on the text itself.
+  pt <- function(size) size * .pt
+  line_h <- function(size) pt(size) * 1.42 / 72.27
+  text_w <- function(l) {
+    grDevices::pdf(NULL); on.exit(grDevices::dev.off())
+    g <- grid::textGrob(l$text, gp = grid::gpar(fontsize = pt(l$size), fontface = l$face, fontfamily = "sans"))
+    grid::convertWidth(grid::grobWidth(g), "in", valueOnly = TRUE)
   }
-  bh <- vapply(boxes, hgt, numeric(1))
-  sh <- if (length(sides)) vapply(sides, hgt, numeric(1)) else numeric(0)
+  head_line <- function(b) ln(b$head, HEAD, "bold", b$col)
+  PADX <- 0.42; PADY <- 0.24
+  box_w <- function(b) max(vapply(c(list(head_line(b)), b$lines), text_w, numeric(1))) + 2 * PADX
+  box_h <- function(b) sum(vapply(c(list(head_line(b)), b$lines), function(l) line_h(l$size), numeric(1))) +
+                       0.10 + 2 * PADY
+  wl <- max(sapply(boxes[c("ident", "criteria", "included")], box_w))
+  wr <- max(sapply(boxes[c("held", "separate")], box_w))
+  h  <- sapply(boxes, box_h)
+  GAPX <- 0.95; GAPY <- 0.62
+  xl <- 0; xr <- wl / 2 + GAPX + wr / 2
 
-  GAP <- 0.52
-  ytop <- 0
-  yc <- numeric(3)
-  for (i in seq_along(boxes)) {
-    yc[i] <- ytop - bh[i]
-    ytop <- yc[i] - bh[i] - GAP
-  }
-  bw <- 3.70; sw <- 2.35; xs <- 0; xside <- bw + 0.85 + sw
+  # Rows: identification | criteria + held out | included + identified separately.
+  row_h <- c(h["ident"], max(h["criteria"], h["held"]), max(h["included"], h["separate"]))
+  yc <- numeric(3); top <- 0
+  for (i in 1:3) { yc[i] <- top - row_h[i] / 2; top <- top - row_h[i] - GAPY }
+  pos <- list(ident = c(xl, yc[1], wl), criteria = c(xl, yc[2], wl), included = c(xl, yc[3], wl),
+              held = c(xr, yc[2], wr), separate = c(xr, yc[3], wr))
 
-  rects <- data.frame(
-    xmin = xs - bw, xmax = xs + bw, ymin = yc - bh, ymax = yc + bh,
-    fill = vapply(boxes, function(b) b$fill, character(1)),
-    edge = vapply(boxes, function(b) b$edge, character(1)), stringsAsFactors = FALSE)
+  h[c("criteria", "held")] <- row_h[2]; h[c("included", "separate")] <- row_h[3]
+  rects <- do.call(rbind, lapply(names(boxes), function(k) data.frame(
+    xmin = pos[[k]][1] - pos[[k]][3] / 2, xmax = pos[[k]][1] + pos[[k]][3] / 2,
+    ymin = pos[[k]][2] - h[[k]] / 2, ymax = pos[[k]][2] + h[[k]] / 2,
+    fill = boxes[[k]]$fill, edge = boxes[[k]]$edge, stringsAsFactors = FALSE)))
+  texts <- do.call(rbind, lapply(names(boxes), function(k) {
+    b <- boxes[[k]]; ls <- c(list(head_line(b)), b$lines)
+    hh <- vapply(ls, function(l) line_h(l$size), numeric(1)); hh[1] <- hh[1] + 0.10
+    y_top <- pos[[k]][2] + sum(hh) / 2
+    data.frame(x = pos[[k]][1], y = y_top - cumsum(hh) + hh / 2,
+               label = vapply(ls, `[[`, "", "text"), size = vapply(ls, `[[`, 0, "size"),
+               face = vapply(ls, `[[`, "", "face"), col = vapply(ls, `[[`, "", "col"),
+               stringsAsFactors = FALSE)
+  }))
+  bottom <- function(k) pos[[k]][2] - h[[k]] / 2
+  top_of <- function(k) pos[[k]][2] + h[[k]] / 2
+  down <- data.frame(x = xl, y = c(bottom("ident"), bottom("criteria")),
+                     yend = c(top_of("criteria"), top_of("included")))
+  ARR <- arrow(length = unit(0.26, "cm"), type = "closed")
 
   p <- ggplot() +
-    geom_segment(data = data.frame(y = (yc - bh)[-3], yend = (yc + bh)[-1]),
-                 aes(x = xs, xend = xs, y = y, yend = yend),
-                 arrow = arrow(length = unit(0.24, "cm"), type = "closed"),
-                 color = INK, linewidth = 0.6) +
     geom_rect(data = rects, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
-              fill = rects$fill, color = rects$edge, linewidth = 0.7)
+              fill = rects$fill, color = rects$edge, linewidth = 0.8) +
+    geom_segment(data = down, aes(x = x, xend = x, y = y, yend = yend),
+                 arrow = ARR, color = INK, linewidth = 0.7) +
+    # criteria -> held out: set aside (dashed)
+    annotate("segment", x = xl + wl / 2, xend = xr - wr / 2, y = yc[2], yend = yc[2],
+             arrow = ARR, color = MUTE, linewidth = 0.6, linetype = "22") +
+    # identified separately -> included (solid)
+    annotate("segment", x = xr - wr / 2, xend = xl + wl / 2, y = yc[3], yend = yc[3],
+             arrow = ARR, color = INK, linewidth = 0.7) +
+    geom_text(data = texts, aes(x = x, y = y, label = label), size = texts$size,
+              fontface = texts$face, color = texts$col, family = "sans")
 
-  if (length(sides)) {
-    sy <- vapply(sides, function(b) yc[b$anchor], numeric(1))
-    p <- p +
-      geom_segment(data = data.frame(y = sy),
-                   aes(x = xs + bw, xend = xside - sw, y = y, yend = y),
-                   arrow = arrow(length = unit(0.19, "cm"), type = "closed"),
-                   color = MUTE, linewidth = 0.45, linetype = "22") +
-      geom_rect(data = data.frame(y = sy, h = sh,
-                                  fill = vapply(sides, function(b) b$fill, character(1)),
-                                  edge = vapply(sides, function(b) b$edge, character(1)),
-                                  stringsAsFactors = FALSE),
-                aes(xmin = xside - sw, xmax = xside + sw, ymin = y - h, ymax = y + h),
-                fill = vapply(sides, function(b) b$fill, character(1)),
-                color = vapply(sides, function(b) b$edge, character(1)), linewidth = 0.6)
-  }
-
-  draw <- function(p, b, x, ymid, halfh) {
-    cur <- ymid + halfh - PAD - line_in(HEAD_SIZE) / 2
-    p <- p + annotate("text", x = x, y = cur, label = b$head, size = HEAD_SIZE,
-                      fontface = "bold", color = b$head_col, family = "sans")
-    cur <- cur - line_in(HEAD_SIZE, 1.55)
-    if (!is.null(b$lead)) {
-      p <- p + annotate("text", x = x, y = cur, label = b$lead, size = b$lead_size,
-                        fontface = "bold", color = INK, family = "sans")
-      cur <- cur - line_in(b$lead_size, 1.70)
-    }
-    if (length(b$body) && any(nzchar(b$body))) {
-      p <- p + annotate("text", x = x, y = cur + line_in(b$body_size) / 2,
-                        label = paste(b$body, collapse = "\n"),
-                        size = b$body_size, color = MUTE, family = "sans",
-                        vjust = 1, lineheight = LHF)
-    }
-    p
-  }
-  for (i in seq_along(boxes)) p <- draw(p, boxes[[i]], xs, yc[i], bh[i])
-  for (i in seq_along(sides))
-    p <- draw(p, sides[[i]], xside, yc[sides[[i]]$anchor], sh[i])
-
-  ylim <- c(min(c(yc - bh, if (length(sh)) sy - sh)) - 0.20,
-            max(c(yc + bh, if (length(sh)) sy + sh)) + 0.20)
-
-  TOP_MATTER <- 1.32
-
-  p <- p +
-    coord_cartesian(xlim = c(xs - bw - 0.25, xside + sw + 0.25), ylim = ylim) +
-    theme_void(base_size = 13) +
-    theme(plot.margin = margin(22, 24, 20, 24),
+  M <- 0.30
+  xlim <- c(xl - wl / 2 - M, xr + wr / 2 + M)
+  ylim <- c(min(rects$ymin) - M, max(rects$ymax) + M)
+  p <- p + coord_cartesian(xlim = xlim, ylim = ylim, expand = FALSE) +
+    theme_void() +
+    theme(plot.margin = margin(0, 0, 0, 0),
           plot.background = element_rect(fill = "white", color = NA))
-  ggsave(file, p, width = 13.8, height = diff(ylim) + TOP_MATTER, dpi = 300)
+  ggsave(file, p, width = diff(xlim), height = diff(ylim), dpi = 300)
   p
 }
 
