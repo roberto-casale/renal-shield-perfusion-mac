@@ -221,7 +221,7 @@ load_GSE98622 <- function() {
 
   list(mat = mat, meta = meta, is_counts = FALSE, paired = FALSE,
        rnaseq_continuous = TRUE,
-       organism = "Mus musculus", platform = "GPL13112/GPL19057 (RNA-seq)",
+       organism = "Mus musculus", platform = "GPL13112 (RNA-seq)",
        modality = "transcriptomics",
        contrast = "acute renal IRI (2-72h) vs sham surgery")
 }
