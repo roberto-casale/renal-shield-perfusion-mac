@@ -4,7 +4,8 @@
 # "IRI", as described in Table 1. run_de() then compares IRI with control using the
 # model that matches the design (Section 4.2):
 #   * microarrays: limma (empirical Bayes moderated t);
-#   * GSE98622, log-normalised RNA-seq values without counts: limma with trend = TRUE;
+#   * GSE98622, processed RNA-seq values without counts (log2(x + 1) by maybe_log2()):
+#     limma with trend = TRUE;
 #   * GSE126805, RNA-seq counts from pre- and post-reperfusion biopsies of the same
 #     kidney: DESeq2 with the kidney as a term in the model;
 #   * GSE27274, cortex and medulla of the same rat: tissue as a covariate and the
