@@ -1,0 +1,5 @@
+"analysis","genes_tested","signature_genes","up","down","main_genes_found","main_genes_not_testable","main_genes_not_found","new_genes","new_gene_symbols"
+"Main analysis",16540,256,237,19,256,0,0,0,""
+"One-to-one orthologs only",15675,234,218,16,232,14,10,2,"MYH9; TAX1BP3"
+"One correction for both directions",16540,175,152,23,171,0,85,4,"DNAJC28; LHX1; TNFRSF14; UGT8"
+"GSE43974 with paired biopsies",16540,257,238,19,256,0,0,1,"MORF4L2"

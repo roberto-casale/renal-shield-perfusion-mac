@@ -4,7 +4,7 @@
 #   ./run_all_macos.sh setup        register the Jupyter kernel (install the R packages
 #                                   first: Rscript R/00_install.R)
 #   ./run_all_macos.sh datasets     notebook 1: GEO series -> per-dataset tables, Table 1
-#   ./run_all_macos.sh analysis     notebook 2: signature, enrichment, figures
+#   ./run_all_macos.sh analysis     notebook 2: signature, enrichment, figures, Table S4
 #   ./run_all_macos.sh validation   notebook 3: external validation on GSE267650
 #   ./run_all_macos.sh all          notebooks 1, 2 and 3, in this order
 #

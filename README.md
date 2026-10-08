@@ -19,6 +19,7 @@ GSE267650, that took no part in its construction.
 | Table 3 | `results/Table3_pathways.csv` | 2 |
 | Table S1 | `results/TableS1_enrichment.csv` | 2 |
 | Table S2 | `results/TableS2_screening.csv` (decisions in `data/screening_decisions.csv`) | 1 |
+| Table S4 | `results/TableS4_sensitivity.csv` (gene by gene: `results/TableS4_sensitivity_genes.csv`) | 2 |
 | Table S6 | `results/TableS6_concordance_by_direction.csv` | 3 |
 | Figure 2 | `figures/Figure2_interventions.png` | 2 |
 | Figure 3 | `figures/Figure3_workflow.png` | 2 |
@@ -30,14 +31,14 @@ rank aggregation.
 
 Intermediate tables: `results/DE_<series>.csv` (one per corpus series, notebook 1);
 `results/validation_permutations_*.csv` and `results/validation_design.csv` (notebook 3).
-Sensitivity analysis on one-to-one orthologs: `results/orthologs_per_dataset.csv` and
-`results/signature_one_to_one_sensitivity.csv` (notebook 2).
+One-to-one orthologs (first sensitivity analysis of Table S4): `results/orthologs_per_dataset.csv`
+and `results/signature_one_to_one_sensitivity.csv` (notebook 2).
 
 ## Contents
 
 ```
 notebook/    01_datasets.ipynb     GEO series -> per-dataset differential expression
-             02_analysis.ipynb     signature, enrichment, figures
+             02_analysis.ipynb     signature, enrichment, figures, sensitivity analyses
              03_validation.ipynb   external validation on GSE267650
 R/           the code the notebooks run, one module per step
 results/     tables (CSV)
