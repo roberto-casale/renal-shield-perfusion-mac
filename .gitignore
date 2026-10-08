@@ -3,8 +3,8 @@ env/
 
 # Downloaded data and caches: recreated on a run. Tracked exceptions, added with
 # `git add -f`: the cached GEO identification answers (Figure 1), the cached
-# WebGestalt answers of the enrichment (data/cache/*.rds) and the screening decisions
-# of Table S2 (data/screening_decisions.csv).
+# WebGestalt answers of the enrichment and the gene sets and identifiers behind them
+# (data/cache/*.rds), and the screening decisions of Table S2 (data/screening_decisions.csv).
 data/
 
 # Run logs.

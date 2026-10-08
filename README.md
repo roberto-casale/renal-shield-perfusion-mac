@@ -17,11 +17,12 @@ GSE267650, that took no part in its construction.
 | Figure 1 | `figures/Figure1_dataset_selection.png` (counts in `results/geo_identification.csv` and `results/geo_corpus_coverage.csv`) | 1 and 2 |
 | Table 2 | `results/Table2_signature.csv` | 2 |
 | Table 3 | `results/Table3_pathways.csv` | 2 |
-| Table S1 | `results/TableS1_enrichment.csv` | 2 |
+| Table S1 | `results/TableS1_enrichment.csv` (gene counts of each database: `results/TableS1_database_counts.csv`) | 2 |
 | Table S2 | `results/TableS2_screening.csv` (decisions in `data/screening_decisions.csv`) | 1 |
 | Table S4 | `results/TableS4_sensitivity.csv` (gene by gene: `results/TableS4_sensitivity_genes.csv`) | 2 |
 | Table S5 | `results/TableS5_GSE267650_samples.csv` (animals per group and time point: `results/TableS5_GSE267650_groups.csv`) | 3 |
 | Table S6 | `results/TableS6_concordance_by_direction.csv` | 3 |
+| Table S7 | `results/TableS7_signature_all_genes.csv` (every tested gene) | 2 |
 | Figure 2 | `figures/Figure2_interventions.png` | 2 |
 | Figure 3 | `figures/Figure3_workflow.png` | 2 |
 | Section 2.4: concordance, median oriented log2 fold change, permutation p-value | `results/validation_summary.csv` (gene by gene: `results/validation_genes_vs_controls.csv`, `results/validation_genes_vs_ischemia.csv`) | 3 |
@@ -44,7 +45,8 @@ notebook/    01_datasets.ipynb     GEO series -> per-dataset differential expres
 R/           the code the notebooks run, one module per step
 results/     tables (CSV)
 figures/     figures (PNG)
-data/cache/  cached answers of GEO and WebGestalt, so that a re-run gives the same result
+data/cache/  cached answers of GEO and WebGestalt (enrichment results and the gene sets and
+             identifiers behind them), so that a re-run gives the same result
 data/screening_decisions.csv  screening decision for each series returned by the GEO query
 renv.lock    versions of the R packages
 ```

@@ -1,0 +1,5 @@
+"database","enrichment_queried_on","inputs_downloaded_on","signature_genes_submitted","signature_genes_mapped","signature_genes_unmapped","tested_genes_submitted","tested_genes_mapped","reference_genes_in_database","signature_genes_in_database","reference_to_input_ratio","categories_tested","categories_enriched"
+"pathway_KEGG","2026-09-13","2026-10-08",256,253,"C11ORF96; C15ORF48; MIDEAS",16540,16035,6488,152,42.6842105263158,324,26
+"pathway_Reactome","2026-09-13","2026-10-08",256,253,"C11ORF96; C15ORF48; MIDEAS",16540,16035,9356,180,51.9777777777778,1712,48
+"drug_DrugBank","2026-09-13","2026-10-08",256,253,"C11ORF96; C15ORF48; MIDEAS",16540,16035,2769,76,36.4342105263158,1144,1
+"drug_GLAD4U","2026-09-13","2026-10-08",256,253,"C11ORF96; C15ORF48; MIDEAS",16540,16035,11293,231,48.8874458874459,1796,59
