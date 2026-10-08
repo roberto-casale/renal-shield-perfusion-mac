@@ -18,6 +18,7 @@ GSE267650, that took no part in its construction.
 | Table 2 | `results/Table2_signature.csv` | 2 |
 | Table 3 | `results/Table3_pathways.csv` | 2 |
 | Table S1 | `results/TableS1_enrichment.csv` | 2 |
+| Table S2 | `results/TableS2_screening.csv` (decisions in `data/screening_decisions.csv`) | 1 |
 | Figure 2 | `figures/Figure2_interventions.png` | 2 |
 | Figure 3 | `figures/Figure3_workflow.png` | 2 |
 | Section 2.4: concordance, median oriented log2 fold change, permutation p-value | `results/validation_summary.csv` (gene by gene: `results/validation_genes_vs_controls.csv`, `results/validation_genes_vs_ischemia.csv`) | 3 |
@@ -41,6 +42,7 @@ R/           the code the notebooks run, one module per step
 results/     tables (CSV)
 figures/     figures (PNG)
 data/cache/  cached answers of GEO and WebGestalt, so that a re-run gives the same result
+data/screening_decisions.csv  screening decision for each series returned by the GEO query
 renv.lock    versions of the R packages
 ```
 
