@@ -1,0 +1,58 @@
+"gsm","geo_title","counts_column","genotype","treatment","time","group","hours_after_reperfusion"
+"GSM8271629","WT_Ctl-No-IRI_1","WT_Ctl-No-IR_1","WT","none","none","non-operated control",NA
+"GSM8271630","WT_Ctl-No-IRI_2","WT_Ctl-No-IR_2","WT","none","none","non-operated control",NA
+"GSM8271631","WT_Ctl-No-IRI_3","WT_Ctl-No-IR_3","WT","none","none","non-operated control",NA
+"GSM8271632","WT_Ctl-No-IRI_4","WT_Ctl-No-IR_4","WT","none","none","non-operated control",NA
+"GSM8271633","WT_Ctl-No-IRI_5","WT_Ctl-No-IR_5","WT","none","none","non-operated control",NA
+"GSM8271634","WT_Ischemia_20min_without_reperfusion_1","WT_Ischemia_20min_without_reperfusion_1","WT","IRI","20min","ischemia only",NA
+"GSM8271635","WT_Ischemia_20min_without_reperfusion_2","WT_Ischemia_20min_without_reperfusion_2","WT","IRI","20min","ischemia only",NA
+"GSM8271636","WT_Ischemia_20min_without_reperfusion_3","WT_Ischemia_20min_without_reperfusion_3","WT","IRI","20min","ischemia only",NA
+"GSM8271637","WT_Ischemia_20min_without_reperfusion_4","WT_Ischemia_20min_without_reperfusion_4","WT","IRI","20min","ischemia only",NA
+"GSM8271638","WT_Ischemia_20min_without_reperfusion_5","WT_Ischemia_20min_without_reperfusion_5","WT","IRI","20min","ischemia only",NA
+"GSM8271639","WT_IRI_4h_1","WT_IRI_4h_1","WT","IRI","4h","reperfused",4
+"GSM8271640","WT_IRI_4h_2","WT_IRI_4h_2","WT","IRI","4h","reperfused",4
+"GSM8271641","WT_IRI_4h_3","WT_IRI_4h_3","WT","IRI","4h","reperfused",4
+"GSM8271642","WT_IRI_4h_4","WT_IRI_4h_4","WT","IRI","4h","reperfused",4
+"GSM8271643","WT_IRI_4h_5","WT_IRI_4h_5","WT","IRI","4h","reperfused",4
+"GSM8271644","WT_IRI_16h_1","WT_IRI_16h_1","WT","IRI","16h","reperfused",16
+"GSM8271645","WT_IRI_16h_2","WT_IRI_16h_2","WT","IRI","16h","reperfused",16
+"GSM8271646","WT_IRI_16h_3","WT_IRI_16h_3","WT","IRI","16h","reperfused",16
+"GSM8271647","WT_IRI_16h_4","WT_IRI_16h_4","WT","IRI","16h","reperfused",16
+"GSM8271648","WT_IRI_16h_5","WT_IRI_16h_5","WT","IRI","16h","reperfused",16
+"GSM8271649","WT_IRI_24h_1","WT_IRI_24h_1","WT","IRI","24h","reperfused",24
+"GSM8271650","WT_IRI_24h_2","WT_IRI_24h_2","WT","IRI","24h","reperfused",24
+"GSM8271651","WT_IRI_24h_3","WT_IRI_24h_3","WT","IRI","24h","reperfused",24
+"GSM8271652","WT_IRI_24h_4","WT_IRI_24h_4","WT","IRI","24h","reperfused",24
+"GSM8271653","WT_IRI_24h_5","WT_IRI_24h_5","WT","IRI","24h","reperfused",24
+"GSM8271654","WT_IRI_36h_1","WT_IRI_36h_1","WT","IRI","36h","reperfused",36
+"GSM8271655","WT_IRI_36h_2","WT_IRI_36h_2","WT","IRI","36h","reperfused",36
+"GSM8271656","WT_IRI_36h_3","WT_IRI_36h_3","WT","IRI","36h","reperfused",36
+"GSM8271657","WT_IRI_36h_4","WT_IRI_36h_4","WT","IRI","36h","reperfused",36
+"GSM8271658","WT_IRI_36h_5","WT_IRI_36h_5","WT","IRI","36h","reperfused",36
+"GSM8271659","WT_IRI_48h_1","WT_IRI_48h_1","WT","IRI","48h","reperfused",48
+"GSM8271660","WT_IRI_48h_2","WT_IRI_48h_2","WT","IRI","48h","reperfused",48
+"GSM8271661","WT_IRI_48h_3","WT_IRI_48h_3","WT","IRI","48h","reperfused",48
+"GSM8271662","WT_IRI_48h_4","WT_IRI_48h_4","WT","IRI","48h","reperfused",48
+"GSM8271663","WT_IRI_48h_5","WT_IRI_48h_5","WT","IRI","48h","reperfused",48
+"GSM8271664","WT_IRI_72h_1","WT_IRI_72h_1","WT","IRI","72h","reperfused",72
+"GSM8271665","WT_IRI_72h_2","WT_IRI_72h_2","WT","IRI","72h","reperfused",72
+"GSM8271666","WT_IRI_72h_3","WT_IRI_72h_3","WT","IRI","72h","reperfused",72
+"GSM8271667","WT_IRI_72h_4","WT_IRI_72h_4","WT","IRI","72h","reperfused",72
+"GSM8271668","WT_IRI_72h_5","WT_IRI_72h_5","WT","IRI","72h","reperfused",72
+"GSM8271669","WT_IRI_72h_6","WT_IRI_72h_6","WT","IRI","72h","reperfused",72
+"GSM8271670","Azin1_locked_IRI_48h_1","Azin1_locked_IRI_48_1","Azin1_locked","IRI","48h","excluded (genetically modified)",NA
+"GSM8271671","Azin1_locked_IRI_48h_2","Azin1_locked_IRI_48_2","Azin1_locked","IRI","48h","excluded (genetically modified)",NA
+"GSM8271672","Azin1_locked_IRI_48h_3","Azin1_locked_IRI_48_3","Azin1_locked","IRI","48h","excluded (genetically modified)",NA
+"GSM8271673","Azin1_locked_IRI_48h_4","Azin1_locked_IRI_48_4","Azin1_locked","IRI","48h","excluded (genetically modified)",NA
+"GSM8271674","Azin1_locked_IRI_48h_5","Azin1_locked_IRI_48_5","Azin1_locked","IRI","48h","excluded (genetically modified)",NA
+"GSM8271675","Azin1_uneditable_IRI_48h_1","Azin1_uneditable_IRI_48h_1","Azin1_unedit","IRI","48h","excluded (genetically modified)",NA
+"GSM8271676","Azin1_uneditable_IRI_48h_2","Azin1_uneditable_IRI_48h_2","Azin1_unedit","IRI","48h","excluded (genetically modified)",NA
+"GSM8271677","Azin1_uneditable_IRI_48h_3","Azin1_uneditable_IRI_48h_3","Azin1_unedit","IRI","48h","excluded (genetically modified)",NA
+"GSM8271678","Azin1_uneditable_IRI_48h_4","Azin1_uneditable_IRI_48h_4","Azin1_unedit","IRI","48h","excluded (genetically modified)",NA
+"GSM8271679","Azin1_uneditable_IRI_48h_5","Azin1_uneditable_IRI_48h_5","Azin1_unedit","IRI","48h","excluded (genetically modified)",NA
+"GSM8271680","Azin1_locked_IRI_72h_1","Azin1_locked_IRI_72h_1","Azin1_locked","IRI","72h","excluded (genetically modified)",NA
+"GSM8271681","Azin1_locked_IRI_72h_2","Azin1_locked_IRI_72h_2","Azin1_locked","IRI","72h","excluded (genetically modified)",NA
+"GSM8271682","Azin1_locked_IRI_72h_3","Azin1_locked_IRI_72h_3","Azin1_locked","IRI","72h","excluded (genetically modified)",NA
+"GSM8271683","Azin1_uneditable_IRI_72h_1","AZIN1_unedit_72h_1","Azin1_unedit","IRI","72h","excluded (genetically modified)",NA
+"GSM8271684","Azin1_uneditable_IRI_72h_2","Azin1_uneditable_IRI_72h_2","Azin1_unedit","IRI","72h","excluded (genetically modified)",NA
+"GSM8271685","Azin1_uneditable_IRI_72h_3","Azin1_uneditable_IRI_72h_3","Azin1_unedit","IRI","72h","excluded (genetically modified)",NA

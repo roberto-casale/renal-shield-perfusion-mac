@@ -20,6 +20,7 @@ GSE267650, that took no part in its construction.
 | Table S1 | `results/TableS1_enrichment.csv` | 2 |
 | Table S2 | `results/TableS2_screening.csv` (decisions in `data/screening_decisions.csv`) | 1 |
 | Table S4 | `results/TableS4_sensitivity.csv` (gene by gene: `results/TableS4_sensitivity_genes.csv`) | 2 |
+| Table S5 | `results/TableS5_GSE267650_samples.csv` (animals per group and time point: `results/TableS5_GSE267650_groups.csv`) | 3 |
 | Table S6 | `results/TableS6_concordance_by_direction.csv` | 3 |
 | Figure 2 | `figures/Figure2_interventions.png` | 2 |
 | Figure 3 | `figures/Figure3_workflow.png` | 2 |
