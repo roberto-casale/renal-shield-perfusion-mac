@@ -1,0 +1,7 @@
+"comparison","direction","genes","concordant","concordance"
+"vs_controls","up",237,231,0.974683544303797
+"vs_controls","down",19,18,0.947368421052632
+"vs_controls","all",256,249,0.97265625
+"vs_ischemia","up",237,223,0.940928270042194
+"vs_ischemia","down",19,18,0.947368421052632
+"vs_ischemia","all",256,241,0.94140625
