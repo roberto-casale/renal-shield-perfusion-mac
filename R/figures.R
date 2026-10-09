@@ -159,12 +159,12 @@ fig_workflow <- function(file, n_sig = NULL, n_terms = NULL, n_path = NULL, n_dr
          lead = "within each dataset: injured tissue versus reference group",
          lead_size = LEAD_SIZE,
          body = "limma   |   DESeq2", body_size = BODY_SIZE),
-    list(head = "META-ANALYSIS", head_col = MUTE, fill = FILL, edge = RULE,
+    list(head = "RANK AGGREGATION", head_col = MUTE, fill = FILL, edge = RULE,
          lead = "RobustRankAggreg", lead_size = LEAD_SIZE,
          body = "rodent genes mapped to their human orthologs", body_size = BODY_SIZE),
     list(head = "CONSENSUS SIGNATURE", head_col = EDGE_SIG, fill = FILL_SIG, edge = EDGE_SIG,
          lead = sprintf("%s genes", n(n_sig, "n")), lead_size = LEAD_SIZE,
-         body = "measured in at least 5 of 9   |   FDR < 0.05   |   consistent direction",
+         body = "measured in \u2265 5 of 9 series   |   adjusted p < 0.05   |   same direction in \u2265 half",
          body_size = BODY_SIZE),
     list(head = "ENRICHMENT", head_col = EDGE_ORA, fill = FILL_ORA, edge = EDGE_ORA,
          lead = sprintf("%s enriched terms", n(n_terms, "n")), lead_size = LEAD_SIZE,
@@ -317,7 +317,7 @@ fig_interventions <- function(file, ora, sig) {
                  linetype = STY[[style]]$lty, linewidth = 0.8),
     annotate("text", x = x + 0.72, y = LEGY, label = label, hjust = 0, size = PT(16),
              colour = INK, family = "sans"))
-  p <- p + key(1.55, "sig", "In the signature") + key(4.45, "lit", "From the literature") +
+  p <- p + key(1.55, "sig", "From the signature") + key(4.45, "lit", "From the literature") +
     key(7.55, "int", "Candidate intervention")
 
   ggsave(file, p, width = 12.2, height = 7.12, dpi = 300, device = ragg::agg_png, bg = "white")

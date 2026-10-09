@@ -12,6 +12,7 @@ logs/
 
 # Manuscript drafts and reference articles: kept on this computer only.
 first_draft/
+draft/
 articles/
 *.pdf
 
