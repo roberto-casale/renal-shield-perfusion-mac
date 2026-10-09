@@ -4,7 +4,7 @@
 # "IRI", as described in Table 1. run_de() then compares IRI with control using the
 # model that matches the design (Section 4.2):
 #   * microarrays: limma (empirical Bayes moderated t);
-#   * GSE98622, processed RNA-seq values without counts (log2(x + 1) by maybe_log2()):
+#   * GSE98622, RNA-seq FPKM values without counts (log2(x + 1) by maybe_log2()):
 #     limma with trend = TRUE;
 #   * GSE126805, RNA-seq counts from pre- and post-reperfusion biopsies of the same
 #     kidney: DESeq2 with the kidney as a term in the model;
@@ -191,7 +191,8 @@ load_GSE39548 <- function() {
        contrast = "renal IRI vs naive control (unprotected)")
 }
 
-# GSE98622, mouse, RNA-seq values from the supplementary file: IRI (2-72 h) vs sham.
+# GSE98622, mouse, RNA-seq FPKM values from the supplementary file (Liu et al., JCI Insight
+# 2017, reference 30 of the article): IRI (2-72 h) vs sham.
 load_GSE98622 <- function() {
   dir <- file.path(DIRS$geo, "GSE98622")
   f <- list.files(dir, pattern = "xlsx$", full.names = TRUE)
