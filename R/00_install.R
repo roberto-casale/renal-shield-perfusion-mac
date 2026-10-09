@@ -24,7 +24,7 @@ message(".libPaths():"); print(.libPaths())
 cran_pkgs <- c("RobustRankAggreg", "babelgene", "matrixStats",
                "jsonlite", "rentrez",
                "WebGestaltR", "dplyr", "readxl",
-               "ggplot2", "renv", "IRkernel")
+               "ggplot2", "ragg", "renv", "IRkernel")
 
 bioc_pkgs <- c("GEOquery", "limma", "DESeq2", "Biobase",
                "org.Hs.eg.db", "AnnotationDbi",
@@ -64,7 +64,7 @@ required <- c(
 
   "jsonlite","rentrez","dplyr","readxl",
 
-  "ggplot2","renv","IRkernel","BiocManager"
+  "ggplot2","ragg","renv","IRkernel","BiocManager"
 )
 ok <- vapply(required, function(p) requireNamespace(p, quietly = TRUE), logical(1))
 cat("\n==== PACKAGE LOAD CHECK ====\n")

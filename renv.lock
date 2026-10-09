@@ -4985,6 +4985,44 @@
       "biocViews": "OrgDb, AnnotationData, Homo_sapiens, humanLLMappings",
       "NeedsCompilation": "no"
     },
+    "org.Mm.eg.db": {
+      "Package": "org.Mm.eg.db",
+      "Version": "3.20.0",
+      "Source": "Bioconductor",
+      "Title": "Genome wide annotation for Mouse",
+      "Description": "Genome wide annotation for Mouse, primarily based on mapping using Entrez Gene identifiers.",
+      "License": "Artistic-2.0",
+      "NeedsCompilation": "no",
+      "Depends": [
+        "R (>= 2.7.0)",
+        "methods",
+        "AnnotationDbi (>= 1.67.0)"
+      ],
+      "Suggests": [
+        "DBI",
+        "annotate",
+        "RUnit"
+      ]
+    },
+    "org.Rn.eg.db": {
+      "Package": "org.Rn.eg.db",
+      "Version": "3.20.0",
+      "Source": "Bioconductor",
+      "Title": "Genome wide annotation for Rat",
+      "Description": "Genome wide annotation for Rat, primarily based on mapping using Entrez Gene identifiers.",
+      "License": "Artistic-2.0",
+      "NeedsCompilation": "no",
+      "Depends": [
+        "R (>= 2.7.0)",
+        "methods",
+        "AnnotationDbi (>= 1.67.0)"
+      ],
+      "Suggests": [
+        "DBI",
+        "annotate",
+        "RUnit"
+      ]
+    },
     "patchwork": {
       "Package": "patchwork",
       "Version": "1.3.2",
@@ -5382,6 +5420,30 @@
       "Repository": "Bioconductor 3.20",
       "NeedsCompilation": "no",
       "Author": "John D. Storey [aut, cre], Andrew J. Bass [aut], Alan Dabney [aut], David Robinson [aut], Gregory Warnes [ctb]"
+    },
+    "ragg": {
+      "Package": "ragg",
+      "Version": "1.5.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Title": "Graphic Devices Based on AGG",
+      "Description": "Anti-Grain Geometry (AGG) is a high-quality and high-performance 2D drawing library. The 'ragg' package provides a set of graphic devices based on AGG to use as alternative to the raster devices provided through the 'grDevices' package.",
+      "License": "MIT + file LICENSE",
+      "NeedsCompilation": "yes",
+      "Imports": [
+        "systemfonts (>= 1.0.3)",
+        "textshaping (>= 0.3.0)"
+      ],
+      "LinkingTo": [
+        "systemfonts",
+        "textshaping"
+      ],
+      "Suggests": [
+        "covr",
+        "graphics",
+        "grid",
+        "testthat (>= 3.0.0)"
+      ]
     },
     "rappdirs": {
       "Package": "rappdirs",
